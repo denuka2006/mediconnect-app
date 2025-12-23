@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediConnect - Healthcare Booking System</title>
+    <link rel="stylesheet" href="C:\Users\Denuka Michael Raj\OneDrive\Desktop\task2\style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Mobile App Header -->
+    <header class="app-header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-stethoscope"></i>
+                <span>MediConnect</span>
+            </div>
+            <div class="header-actions">
+                <button class="notification-btn" id="notificationBtn">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge" id="notificationBadge">3</span>
+                </button>
+                <div class="profile-menu" id="profileMenu">
+                    <div class="avatar">P</div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main App Container -->
+    <div class="app-container">
+        <!-- Sidebar Navigation (Desktop) -->
+        <nav class="sidebar" id="sidebar">
+            <div class="nav-profile">
+                <div class="avatar-large">Patient</div>
+                <div class="profile-info">
+                    <div class="name">Patient Name</div>
+                    <div class="role">Member</div>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item active" data-section="home">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </li>
+                <li class="nav-item" data-section="doctors">
+                    <i class="fas fa-user-md"></i>
+                    <span>Doctors</span>
+                </li>
+                <li class="nav-item" data-section="appointments">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Appointments</span>
+                </li>
+                <li class="nav-item" data-section="bookings">
+                    <i class="fas fa-calendar-plus"></i>
+                    <span>Book Appointment</span>
+                </li>
+                <li class="nav-item" data-section="prescriptions">
+                    <i class="fas fa-file-medical"></i>
+                    <span>Prescriptions</span>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Mobile Bottom Navigation -->
+        <div class="mobile-nav" id="mobileNav">
+            <button class="nav-btn active" data-section="home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </button>
+            <button class="nav-btn" data-section="doctors">
+                <i class="fas fa-user-md"></i>
+                <span>Doctors</span>
+            </button>
+            <button class="nav-btn" data-section="bookings">
+                <i class="fas fa-calendar-plus"></i>
+                <span>Book</span>
+            </button>
+            <button class="nav-btn" data-section="appointments">
+                <i class="fas fa-calendar-check"></i>
+                <span>Appts</span>
+            </button>
+            <button class="nav-btn" data-section="profile">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </button>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Home/Dashboard Section -->
+            <section id="home-section" class="content-section active">
+                <div class="welcome-card">
+                    <h1>Welcome Back!</h1>
+                    <p>Find doctors, book appointments, and manage your healthcare easily.</p>
+                    <div class="quick-stats">
+                        <div class="stat-card">
+                            <div class="stat-number">2</div>
+                            <div class="stat-label">Upcoming Appointments</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">4.8</div>
+                            <div class="stat-label">Avg Rating</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">12</div>
+                            <div class="stat-label">Doctors Visited</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h2>Quick Actions</h2>
+                    <div class="actions-grid">
+                        <button class="action-btn primary" onclick="showSection('bookings')">
+                            <i class="fas fa-calendar-plus"></i>
+                            Book Appointment
+                        </button>
+                        <button class="action-btn secondary" onclick="showSection('doctors')">
+                            <i class="fas fa-user-md"></i>
+                            Find Doctors
+                        </button>
+                        <button class="action-btn secondary" onclick="showSection('appointments')">
+                            <i class="fas fa-calendar-check"></i>
+                            My Appointments
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Featured Doctors -->
+                <div class="featured-doctors">
+                    <h2>Top Doctors</h2>
+                    <div class="doctors-slider" id="doctorsSlider">
+                        <div class="doctor-card">
+                            <div class="doctor-avatar">Dr. A</div>
+                            <div class="doctor-info">
+                                <h3>Dr. Anjali Sharma</h3>
+                                <div class="specialty">Cardiologist</div>
+                                <div class="rating">⭐ 4.9 (127)</div>
+                                <div class="availability">Available Now</div>
+                            </div>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                        <!-- More doctor cards will be generated by JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Doctors Section -->
+            <section id="doctors-section" class="content-section">
+                <div class="search-header">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search doctors, specialties..." id="doctorSearch">
+                    </div>
+                    <select id="specialtyFilter">
+                        <option>All Specialties</option>
+                        <option>Cardiology</option>
+                        <option>Neurology</option>
+                        <option>Dentistry</option>
+                        <option>Pediatrics</option>
+                    </select>
+                </div>
+                <div class="doctors-list" id="doctorsList">
+                    <!-- Doctors loaded by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Book Appointment Section -->
+            <section id="bookings-section" class="content-section">
+                <div class="booking-flow">
+                    <div class="step active" data-step="1">
+                        <h2>Select Specialty</h2>
+                        <div class="specialty-grid" id="specialtyGrid">
+                            <!-- Specialties loaded by JS -->
+                        </div>
+                    </div>
+                    <div class="step" data-step="2">
+                        <h2>Select Doctor</h2>
+                        <div class="doctor-selection" id="doctorSelection"></div>
+                    </div>
+                    <div class="step" data-step="3">
+                        <h2>Select Time</h2>
+                        <div class="calendar-container" id="calendarContainer"></div>
+                    </div>
+                    <div class="step" data-step="4">
+                        <h2>Confirm Booking</h2>
+                        <div class="booking-summary" id="bookingSummary"></div>
+                        <button class="confirm-btn" onclick="confirmBooking()">Confirm Booking</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Appointments Section -->
+            <section id="appointments-section" class="content-section">
+                <div class="appointments-list" id="appointmentsList">
+                    <!-- Appointments loaded by JS -->
+                </div>
+            </section>
+
+            <!-- Prescriptions Section -->
+            <section id="prescriptions-section" class="content-section">
+                <div class="prescriptions-grid" id="prescriptionsGrid">
+                    <!-- Prescriptions loaded by JS -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Notifications Panel -->
+    <div class="notification-panel" id="notificationPanel">
+        <div class="panel-header">
+            <h3>Notifications</h3>
+            <button class="close-btn" onclick="closeNotifications()">×</button>
+        </div>
+        <div class="notifications-list" id="notificationsList">
+            <!-- Notifications loaded by JS -->
+        </div>
+    </div>
+
+    <!-- Profile Menu Overlay -->
+    <div class="profile-overlay" id="profileOverlay"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
