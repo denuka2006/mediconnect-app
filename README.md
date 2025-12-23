@@ -3,8 +3,7 @@
 MediConnect is a healthcare web application that allows patients to find doctors, book appointments, and manage healthcare activities easily.
 
 ##  Live Demo
-https://denuka2006.github.io/mediconnect/
-
+https://github.com/denuka2006/mediconnect-app
 ## App Screenshots
 
 ###  Dashboard
